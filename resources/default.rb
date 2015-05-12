@@ -1,0 +1,33 @@
+#
+# Author:: Brian Matthews (<brian@btmatthews.com>)
+# Cookbook Name:: archive
+# Resource:: default
+#
+# Copyright 2015, Brian Matthews
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+actions :unpack
+default_action :unpack
+
+attribute :source, :name_attribute => true, :kind_of => String, :required => true
+attribute :path, :kind_of => String, :required => true
+attribute :owner, :regex => [ /^([a-z]|[A-Z]|[0-9]|_|-)+$/, /^\d+$/ ]
+attribute :group, :regex => [ /^([a-z]|[A-Z]|[0-9]|_|-)+$/, /^\d+$/ ]
+attribute :mode, :kind_of => [Integer, String] # :regex => /^0?\d{3,4}$/
+attribute :dir_mode, :kind_of => [Integer, String] #:regex => /^0?\d{3,4}$/
+attribute :exclusions, :kind_of => [Array, String]
+attribute :inclusions, :kind_of => [Array, String]
+attribute :cookbook, :kind_of => String
+attribute :strip, :kind_of => [String, Integer], :default => 0
